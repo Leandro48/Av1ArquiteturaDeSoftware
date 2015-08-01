@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -100,13 +101,122 @@ public class Loja
 		this.motocicletas.add(motocicleta);
 	}
 
+	private ArrayList<Veiculo> _buscarCarro(String variavel, String valor)
+	{
+		ArrayList<Veiculo> listaResultado = new ArrayList<>();
+		try
+		{
+			if (Veiculo.class.getDeclaredField(variavel) != null)
+			{
+				variavel = "get"
+						+ variavel.replaceFirst("[a-z]{1}",
+								variavel.substring(0, 1).toUpperCase());
+				System.out.println("achou metodo: " + variavel);
+				Method metodo = Veiculo.class.getMethod(variavel, null);
+
+				for (Veiculo v : this.carros)
+				{
+					if (metodo.invoke(v, null).toString().equals(valor))
+					{
+						listaResultado.add(v);
+					}
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return listaResultado;
+	}
+
+	private ArrayList<Veiculo> _buscarMotocicleta(String variavel, String valor)
+	{
+		ArrayList<Veiculo> listaResultado = new ArrayList<>();
+		try
+		{
+			if (Veiculo.class.getDeclaredField(variavel) != null)
+			{
+				variavel = "get"
+						+ variavel.replaceFirst("[a-z]{1}",
+								variavel.substring(0, 1).toUpperCase());
+				System.out.println("achou metodo: " + variavel);
+				Method metodo = Veiculo.class.getMethod(variavel, null);
+
+				for (Veiculo v : this.motocicletas)
+				{
+					if (metodo.invoke(v, null).toString().equals(valor))
+					{
+						listaResultado.add(v);
+					}
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return listaResultado;
+	}
+	
+	public void buscarCarro(String variavel, String valor)
+	{
+		ArrayList<Veiculo> listaResultado = this._buscarCarro(variavel, valor);
+
+		System.out.println("Buscando por " + variavel + " = " + valor);
+		Mensagem.imprimeTabelaCabecalho();
+		if (listaResultado.size() < 1)
+		{
+			System.out.format("|%71s%64s|\n", "Nada encontrado para " + valor
+					+ " em " + variavel, "");
+		}
+		else
+		{
+			for (Veiculo v : listaResultado)
+			{
+				Mensagem.imprimeTabelaLinha(v);
+			}
+		}
+		Mensagem.imprimeTabelaFim();
+	}
+
+	public void buscarMotocicleta(String variavel, String valor)
+	{
+		ArrayList<Veiculo> listaResultado = this._buscarMotocicleta(variavel, valor);
+
+		System.out.println("Buscando por " + variavel + " = " + valor);
+		Mensagem.imprimeTabelaCabecalho();
+		if (listaResultado.size() < 1)
+		{
+			System.out.format("|%71s%64s|\n", "Nada encontrado para " + valor
+					+ " em " + variavel, "");
+		}
+		else
+		{
+			for (Veiculo v : listaResultado)
+			{
+				Mensagem.imprimeTabelaLinha(v);
+			}
+		}
+		Mensagem.imprimeTabelaFim();
+	}
+	
 	public void listarEstoqueDeCarros()
 	{
 		Mensagem.imprimeTabelaCabecalho();
-
-		for (Veiculo v : this.carros)
+		if (this.carros.size() < 1)
 		{
-			Mensagem.imprimeTabelaLinha(v);
+			System.out.format("|%71s%64s|\n", "Nada encontrado para em carros",
+					"");
+		}
+		else
+		{
+			for (Veiculo v : this.carros)
+			{
+				Mensagem.imprimeTabelaLinha(v);
+			}
 		}
 		Mensagem.imprimeTabelaFim();
 	}
@@ -114,10 +224,17 @@ public class Loja
 	public void listarEstoqueDeMotocicletas()
 	{
 		Mensagem.imprimeTabelaCabecalho();
-		
-		for (Veiculo v : this.motocicletas)
+		if (this.motocicletas.size() < 1)
 		{
-			Mensagem.imprimeTabelaLinha(v);
+			System.out.format("|%71s%64s|\n", "Nada encontrado para em motocicletas",
+					"");
+		}
+		else
+		{
+			for (Veiculo v : this.motocicletas)
+			{
+				Mensagem.imprimeTabelaLinha(v);
+			}
 		}
 		Mensagem.imprimeTabelaFim();
 	}

@@ -47,17 +47,17 @@ public class Mensagem
 				cambio, Float.parseFloat(preco));
 	}
 
-	public static boolean geraMenuProsseguir()
+	public static void geraMenuProsseguir()
 	{
 		String resultado = Mensagem
-				.prompt("Deseja voltar para o menu principal? [sim] [nao]");
+				.prompt("Deseja voltar para o menu principal? Sim (S) ou Não (N): ");
 
-		if (resultado.equals("sim"))
+		if (resultado.toLowerCase().equals("s"))
 		{
-			return true;
+			return;
 		}
 
-		return false;
+		Mensagem.geraMenuProsseguir();
 	}
 
 	public static void imprimeTabelaCabecalho()
