@@ -114,6 +114,7 @@ public class Mensagem
 		tmp.append("6 - Listar Motocicleta\n");
 		tmp.append("7 - Salvar Estoque\n");
 		tmp.append("8 - Recuperar Estoque\n");
+		tmp.append("9 - Sair\n");
 		tmp.append("------------------------------\n");
 
 		System.out.println(tmp);
