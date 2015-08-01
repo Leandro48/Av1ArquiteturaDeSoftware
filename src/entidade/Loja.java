@@ -160,7 +160,7 @@ public class Loja
 
 		return listaResultado;
 	}
-	
+
 	public void buscarCarro(String variavel, String valor)
 	{
 		ArrayList<Veiculo> listaResultado = this._buscarCarro(variavel, valor);
@@ -184,7 +184,8 @@ public class Loja
 
 	public void buscarMotocicleta(String variavel, String valor)
 	{
-		ArrayList<Veiculo> listaResultado = this._buscarMotocicleta(variavel, valor);
+		ArrayList<Veiculo> listaResultado = this._buscarMotocicleta(variavel,
+				valor);
 
 		System.out.println("Buscando por " + variavel + " = " + valor);
 		Mensagem.imprimeTabelaCabecalho();
@@ -202,7 +203,7 @@ public class Loja
 		}
 		Mensagem.imprimeTabelaFim();
 	}
-	
+
 	public void listarEstoqueDeCarros()
 	{
 		Mensagem.imprimeTabelaCabecalho();
@@ -226,8 +227,8 @@ public class Loja
 		Mensagem.imprimeTabelaCabecalho();
 		if (this.motocicletas.size() < 1)
 		{
-			System.out.format("|%71s%64s|\n", "Nada encontrado para em motocicletas",
-					"");
+			System.out.format("|%71s%64s|\n",
+					"Nada encontrado para em motocicletas", "");
 		}
 		else
 		{

@@ -50,7 +50,7 @@ public class Mensagem
 	public static void geraMenuProsseguir()
 	{
 		String resultado = Mensagem
-				.prompt("Deseja voltar para o menu principal? Sim (S) ou Não (N): ");
+				.prompt("\nDeseja voltar para o menu principal? Sim (S) ou Não (N):\n");
 
 		if (resultado.toLowerCase().equals("s"))
 		{
