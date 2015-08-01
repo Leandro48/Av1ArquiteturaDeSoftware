@@ -16,7 +16,7 @@ public class Principal
 
 		while (opcao != -1)
 		{
-			if (opcao > 0 && opcao < 9)
+			if (opcao > 0 && opcao < 10)
 			{
 				switch (opcao)
 				{
@@ -26,7 +26,7 @@ public class Principal
 						loja.adicionarCarro(novoCarro);
 						System.out.println("Carro adicionado com sucesso !");
 						Mensagem.apagarConsole();
-						Mensagem.geraMenuPrincipal();
+						opcao = Mensagem.geraMenuPrincipal();
 						break;
 					case 2:
 						break;
@@ -48,13 +48,12 @@ public class Principal
 						System.out
 								.println("Motocicleta adicionada com sucesso !");
 						Mensagem.apagarConsole();
-						Mensagem.geraMenuPrincipal();
+						opcao = Mensagem.geraMenuPrincipal();
 						break;
 					case 5:
 						break;
 					case 6:
 						loja.listarEstoqueDeMotocicletas();
-
 						if (Mensagem.geraMenuProsseguir() == true)
 						{
 							opcao = Mensagem.geraMenuPrincipal();
@@ -67,19 +66,23 @@ public class Principal
 					case 7:
 						loja.salvarEstoque();
 						System.out.println("Estoque salvo com sucesso !");
-						Mensagem.geraMenuPrincipal();
+						opcao = Mensagem.geraMenuPrincipal();
 						break;
 					case 8:
 						loja.recuperarEstoque();
 						System.out.println("Estoque recuperado com sucesso !");
 						opcao = Mensagem.geraMenuPrincipal();
 						break;
+					case 9:
+						System.out.println("Adeus !");
+						System.exit(0);
+						break;
 				}
 			}
 			else
 			{
 				Mensagem.apagarConsole();
-				System.out.println("Opcao \"" + opcao + "\" inválida");
+				System.out.println("Opção \"" + opcao + "\" inválida");
 				try
 				{
 					Thread.sleep(4);
