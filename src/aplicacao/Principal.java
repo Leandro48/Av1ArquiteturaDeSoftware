@@ -1,7 +1,5 @@
 package aplicacao;
 
-import javax.rmi.CORBA.Util;
-
 import util.Mensagem;
 import entidade.Carro;
 import entidade.Loja;
@@ -34,7 +32,6 @@ public class Principal
 						break;
 					case 3:
 						loja.listarEstoqueDeCarros();
-
 						if (Mensagem.geraMenuProsseguir() == true)
 						{
 							opcao = Mensagem.geraMenuPrincipal();
@@ -43,7 +40,6 @@ public class Principal
 						{
 							Mensagem.geraMenuProsseguir();
 						}
-
 						break;
 					case 4:
 						Motocicleta novaMotocicleta = (Motocicleta) Mensagem
@@ -57,6 +53,16 @@ public class Principal
 					case 5:
 						break;
 					case 6:
+						loja.listarEstoqueDeMotocicletas();
+
+						if (Mensagem.geraMenuProsseguir() == true)
+						{
+							opcao = Mensagem.geraMenuPrincipal();
+						}
+						else
+						{
+							Mensagem.geraMenuProsseguir();
+						}
 						break;
 					case 7:
 						loja.salvarEstoque();

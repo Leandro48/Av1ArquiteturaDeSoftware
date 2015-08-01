@@ -60,6 +60,47 @@ public class Mensagem
 		return false;
 	}
 
+	public static void imprimeTabelaCabecalho()
+	{
+		System.out.print("+");
+		for (int i = 0; i < (16 * 8) + 7; i++)
+		{
+			System.out.print("-");
+		}
+		System.out.print("+");
+		System.out.println();
+
+		System.out.format("|%16s|%16s|%16s|%16s|%16s|%16s|%16s|%16s|\n",
+				"Chassi", "Montadora", "Modelo", "Tipo", "Cor", "Motorizacao",
+				"Cambio", "Preco");
+
+		System.out.print("+");
+		for (int i = 0; i < (16 * 8) + 7; i++)
+		{
+			System.out.print("-");
+		}
+		System.out.print("+");
+		System.out.println();
+	}
+
+	public static void imprimeTabelaLinha(Veiculo v)
+	{
+		System.out.format("|%16s|%16s|%16s|%16s|%16s|%16s|%16s|%16.2f|\n",
+				v.getChassi(), v.getMontadora(), v.getModelo(), v.getTipo(),
+				v.getCor(), v.getMotorizacao(), v.getCambio(), v.getPreco());
+	}
+
+	public static void imprimeTabelaFim()
+	{
+		System.out.print("+");
+		for (int i = 0; i < (16 * 8) + 7; i++)
+		{
+			System.out.print("-");
+		}
+		System.out.print("+");
+		System.out.println();
+	}
+
 	public static int geraMenuPrincipal()
 	{
 		StringBuilder tmp = new StringBuilder();
