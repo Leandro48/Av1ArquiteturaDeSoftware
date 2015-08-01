@@ -11,7 +11,8 @@ import java.util.Scanner;
 
 public class Loja
 {
-	private static final String		arquivoDadosLoja	= "data.txt";
+	private static final String		arquivoEstoqueCarro			= "carroEstoque.txt";
+	private static final String		arquivoEstoqueMotocicleta	= "motocicletaEstoque.txt";
 
 	private String					endereco;
 	private String					nome;
@@ -44,23 +45,14 @@ public class Loja
 		this.nome = nome;
 	}
 
-	public ArrayList<Carro> getCarros()
-	{
-		return carros;
-	}
-
-	public ArrayList<Motocicleta> getMotocicletas()
-	{
-		return motocicletas;
-	}
-
-	public void salvarCarros()
+	private void salvarObjetos(Class<?> tipo, String arquivo)
 	{
 		try
 		{
-			FileOutputStream saidaStream = new FileOutputStream(arquivoDadosLoja);
+			FileOutputStream saidaStream = new FileOutputStream(arquivo);
 			ObjectOutputStream objectSaida = new ObjectOutputStream(saidaStream);
-			objectSaida.writeObject(this.carros);
+			objectSaida.writeObject((tipo == Carro.class) ? this.carros
+					: this.motocicletas);
 			objectSaida.close();
 		}
 		catch (Exception e)
@@ -68,16 +60,59 @@ public class Loja
 			e.printStackTrace();
 		}
 	}
-	
-	public void carregarCarros()
+
+	@SuppressWarnings("unchecked")
+	private void recuperarObjetos(Class<?> tipo, String arquivo)
 	{
-		try{
-			FileInputStream entradaStream = new FileInputStream(arquivoDadosLoja);
-			ObjectInputStream objectEntrada = new ObjectInputStream (entradaStream);
-			this.carros = (ArrayList<Carro>) objectEntrada.readObject();
+		try
+		{
+			FileInputStream entradaStream = new FileInputStream(arquivo);
+			ObjectInputStream objectEntrada = new ObjectInputStream(
+					entradaStream);
+
+			if (tipo == Carro.class)
+			{
+				this.carros = (ArrayList<Carro>) objectEntrada.readObject();
+			}
+			else
+			{
+				this.motocicletas = (ArrayList<Motocicleta>) objectEntrada
+						.readObject();
+			}
+
 			objectEntrada.close();
-		}catch(Exception e){
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
+	}
+
+	public void adicionarCarro(Carro carro)
+	{
+		this.carros.add(carro);
+	}
+	
+	public void listarEstoqueDeCarros(){
+		for(Carro c : this.carros){
+			System.out.println(c.getChassi());
+		}
+	}
+
+	public void adicionarMotocicleta(Motocicleta motocicleta)
+	{
+		this.motocicletas.add(motocicleta);
+	}
+	
+	public void salvarEstoque()
+	{
+		this.salvarObjetos(Carro.class, arquivoEstoqueCarro);
+		this.salvarObjetos(Motocicleta.class, arquivoEstoqueMotocicleta);
+	}
+
+	public void recuperarEstoque()
+	{
+		this.recuperarObjetos(Carro.class, arquivoEstoqueCarro);
+		this.recuperarObjetos(Motocicleta.class, arquivoEstoqueMotocicleta);
 	}
 }
