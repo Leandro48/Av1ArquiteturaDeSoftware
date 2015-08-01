@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import util.Mensagem;
+
 public class Loja
 {
 	private static final String		arquivoEstoqueCarro			= "carroEstoque.txt";
@@ -92,18 +94,34 @@ public class Loja
 	{
 		this.carros.add(carro);
 	}
-	
-	public void listarEstoqueDeCarros(){
-		for(Carro c : this.carros){
-			System.out.println(c.getChassi());
-		}
-	}
 
 	public void adicionarMotocicleta(Motocicleta motocicleta)
 	{
 		this.motocicletas.add(motocicleta);
 	}
-	
+
+	public void listarEstoqueDeCarros()
+	{
+		Mensagem.imprimeTabelaCabecalho();
+
+		for (Veiculo v : this.carros)
+		{
+			Mensagem.imprimeTabelaLinha(v);
+		}
+		Mensagem.imprimeTabelaFim();
+	}
+
+	public void listarEstoqueDeMotocicletas()
+	{
+		Mensagem.imprimeTabelaCabecalho();
+		
+		for (Veiculo v : this.motocicletas)
+		{
+			Mensagem.imprimeTabelaLinha(v);
+		}
+		Mensagem.imprimeTabelaFim();
+	}
+
 	public void salvarEstoque()
 	{
 		this.salvarObjetos(Carro.class, arquivoEstoqueCarro);
