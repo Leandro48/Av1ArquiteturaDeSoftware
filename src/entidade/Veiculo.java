@@ -13,6 +13,24 @@ public abstract class Veiculo implements Serializable
 	private String	cambio;
 	private float	preco;
 
+	public Veiculo()
+	{
+	}
+
+	public Veiculo(String chassi, String montadora, String modelo, String tipo,
+			String cor, String motorizacao, String cambio, float preco)
+	{
+		super();
+		this.chassi = chassi;
+		this.montadora = montadora;
+		this.modelo = modelo;
+		this.tipo = tipo;
+		this.cor = cor;
+		this.motorizacao = motorizacao;
+		this.cambio = cambio;
+		this.preco = preco;
+	}
+
 	public String getChassi()
 	{
 		return chassi;
